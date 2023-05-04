@@ -1,7 +1,6 @@
 class Store
-  attr_reader :item_source, :item_color, :item_name
+  attr_reader :item_source, :item_color, :item_name, :item_weight
   attr_writer :item_source
-
 
   def initialize(item_stuff)
     @item_name = item_stuff[:item_name]
@@ -9,26 +8,29 @@ class Store
     @item_source = item_stuff[:item_source]
   end
 
-  # def item_name
-  #   @item_name
-  # end
+module ItemWeightRelatable
+  def item_weight
+    @item_weight
+  end
 
-  # def item_color
-  #   @item_color
-  # end
+end
 
-  # def item_source
-  #   @item_source
-  # end
+class Food < Store
+  include ItemWeightRelatable
+  def initialize
+    super
+    @shelf_life = "7 days"
+  end
 
-  # def item_source=(location)
-  #   @item_source = location
-  # end
+  def shelf_life
+    @shelf_life
+  end
 end
   
-item1 =Store.new(item_name: "fancyshirt", item_color: "red", item_source: "Cuba")
-item2 =Store.new(item_name: "fancyshoes", item_color: "blue", item_source: "United States")
-item3 =Store.new(item_name: "fancycar", item_color: "grey", item_source: "Italy")
+item1 =Store.new(item_name: "fancyshirt", item_color: "red", item_source: "Cuba", item_weight: 1)
+item2 =Store.new(item_name: "fancyshoes", item_color: "blue", item_source: "United States", item_weight: 5)
+item3 =Store.new(item_name: "fancycar", item_color: "grey", item_source: "Italy", item_weight: 100)
+
 p item1
 p item1.item_name
 p item2.item_color

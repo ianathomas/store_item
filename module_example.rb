@@ -1,4 +1,4 @@
-class Vehicle
+module VehicleRelatable
   def initialize
     @speed = 0
     @direction = 'north'
@@ -17,32 +17,17 @@ class Vehicle
   end
 end
 
-
-class Car < Vehicle
-  def initialize
-    super
-    @fuel = "gasoline"
-  end
-
-  def fuel
-    @fuel
-  end
+class Car
+  include VehicleRelatable
 
   def honk_horn
     puts "Beeeeeeep!"
   end
 end
 
-class Bike < Car
-  def initialize
-    super
-    @fuel = "muscles"
-  end
+class Bike
+  include VehicleRelatable
 
-  def fuel
-    @fuel
-  end
-  
   def ring_bell
     puts "Ring ring!"
   end
@@ -51,5 +36,7 @@ end
 car1 = Car.new
 bike1 = Bike.new
 
-p car1.fuel
-p bike1.fuel
+p bike1
+p car1
+p bike1.ring_bell
+
